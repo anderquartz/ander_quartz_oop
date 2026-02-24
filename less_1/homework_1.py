@@ -11,12 +11,15 @@
 
 
 class Dog:
-    "Класс для создания профиля собаки"
+    """Класс для создания профиля собаки."""
     species = "canis"
     legs = 4
 
 bruno = Dog()
 bobik = Dog()
+
+print(id(bruno))
+print(id(bobik))
 
 bobik.species = 'brodyaga'
 bruno.legs = 5
