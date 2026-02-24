@@ -64,6 +64,18 @@ print()
 # метод get_credentials(), который возвращает кортеж из логина и пароля.
 # Попробуй создать объект и изменить логин снаружи напрямую. Проверь, что это не сработает.
 
+# 5. Добавь в User:
+# метод check_password(password) — возвращает True,
+# если переданное значение совпадает с сохранённым паролем;
+# приватный метод __encrypt_password(password),
+# который возвращает пароль в верхнем регистре (имитация шифрования);
+# в set_credentials вызывай __encrypt_password.
+# Пример:
+# u = User()
+# u.set_credentials("daniil", "qwerty")
+# print(u.check_password("qwerty"))      # True
+# print(u.check_password("qwe"))         # False
+
 class User:
     def __init__(self, login, password):
         self.__login = login
@@ -72,16 +84,36 @@ class User:
     def set_credentials(self, login, password):
         if isinstance(login, str) and isinstance(password, str):
             self.__login = login
-            self.__password = password
+            self.__password = self.__encrypt_password(password)
 
     def get_credentials(self):
         return self.__login, self.__password
+
+    def check_password(self, password):
+        return self.__password == password
+
+    def __encrypt_password(self, password):
+        return password.upper()
 
 user1 = User("Keker", 123)
 
 user1.login = "kekerrrrr" # dont work
 print(user1.get_credentials())
 
-user1.set_credentials("Kekerboy", "")
+user1.set_credentials("Kekerboy", "123")
 print(user1.get_credentials())
 
+print()
+
+u = User("daniil", "qwerty")
+u.set_credentials("daniil", "qwerty")
+print(u.check_password("qwerty"))
+print(u.check_password("qwe"))
+
+print()
+
+# __encrypt_password("qwerty") не работает
+
+# print(u.__password) нельзя
+
+print(u._User__password)
