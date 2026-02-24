@@ -69,11 +69,11 @@ class Person:
     def __del__(self):
         print(f'Удалён объект: {self.name}')
 
-objj = Person('Petr', 22)
-print(objj.show_info())
+person = Person('Petr', 22)
+print(person.show_info())
 
-objj2 = Person('Vova', 18)
-del objj2
+person2 = Person('Vova', 18)
+del person2
 
 print()
 
@@ -102,12 +102,12 @@ print()
 # а при вызове __init__ — Инициализация логгера.
 
 class Logger:
-    instance = None
+    _instance = None
     def __new__(cls, *args, **kwargs):
-        if cls.instance is None:
+        if cls._instance is None:
             print('Создание логгера')
-            cls.instance = super().__new__(cls)
-        return cls.instance
+            cls._instance = super().__new__(cls)
+        return cls._instance
 
     def __init__(self):
         print('Инициализация логгера')
