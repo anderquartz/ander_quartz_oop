@@ -117,3 +117,7 @@ class TestUser:
 
 user = TestUser(12, "Daniil", "daniil@example.com")
 print(user)
+
+
+
+#Делаю второй коммит через консоль
